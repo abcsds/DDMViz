@@ -37,11 +37,11 @@ fig = Figure();
 
 # SliderGrid
 sg = SliderGrid(
-    fig[1:2, 1:8], 
+    fig[1, 1:8], 
     (label="Drift Rate", range=-1.0:0.001:1.0, format="{:.3f}", startvalue=0.005),
     (label="Decision Bound", range=0.1:0.001:2.0, format="{:.1f}", startvalue=1.0),
     (label="Non-Decision Time", range=0.0:0.001:1.0, format="{:.1f}", startvalue=0.3),
-    (label="Stochastic Noise", range=0.0:0.001:1.0, format="{:.1f}", startvalue=0.1),
+    (label="Stochastic Noise", range=0.0:0.001:1.0, format="{:.3f}", startvalue=0.1),
     (label="Maximum Time", range=1:0.1:10, format="{:.1f}", startvalue=1)
 )
 
@@ -77,6 +77,7 @@ line_non_decision_time = vlines!(ax_middle, τ, color=:black, linestyle=:dash)
 # Top Axis
 ax_top = Axis(fig[3, 1:10], xlabel="Time", ylabel="Probability")
 hist_top = hist!(ax_top, p_pos, bins=range(0.0, max_t[], length=100), color=:teal)
+# dens_top = density!(ax_top, p_pos, color=:teal)
 ylims!(0, 50)
 hidespines!(ax_top)
 hidexdecorations!(ax_top)
@@ -84,6 +85,7 @@ hidexdecorations!(ax_top)
 # Bottom Axis
 ax_bottom = Axis(fig[5, 1:10], xlabel="Time", ylabel="Probability")
 hist_bottom = hist!(ax_bottom, p_neg, bins=range(0.0, max_t[], length=100), color=:coral)
+# dens_bottom = density!(ax_bottom, p_neg, color=:coral)
 ylims!(0, 50)
 hidespines!(ax_bottom)
 hidexdecorations!(ax_bottom)
